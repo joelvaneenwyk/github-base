@@ -12,6 +12,7 @@ const utils = require('./lib/utils');
 
 /**
  * @typedef {import('./lib/utils').Options} Options
+ * @typedef {import('./lib/utils').Next} Next
  *
  * @typedef {Object} GitHubOptions
  * @property {string} [token]
@@ -139,7 +140,6 @@ class GitHub {
    * @param  {Options} `options` Request [options](#options).
    * @api public
    */
-
   post(path, options = {}) {
     return this.request('POST', path, options);
   }
@@ -174,11 +174,11 @@ class GitHub {
    * ```
    * @name .paged
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
-   * @param  {Function} `next` Callback function to run on each page
+   * @param  {Options | null} `options` Request [options](#options).
+   * @param  {Next} `next` Callback function to run on each page
    * @api public
    */
-  paged(path, options = null, next = () => {}) {
+  paged(path, options = null, next = () => { }) {
     if (typeof options === 'function') {
       next = options;
       options = null;
@@ -186,9 +186,5 @@ class GitHub {
     return utils.paged('GET', path, { ...this.options, ...options, next });
   }
 }
-
-/**
- * Expose `GitHub`
- */
 
 module.exports = GitHub;
