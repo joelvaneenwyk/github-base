@@ -20,9 +20,13 @@ describe('API', function() {
     const github = new GitHub();
     let count = 0;
 
+    // @ts-ignore
     github.a = 'b';
+
+    // @ts-ignore
     github.use(function() {
       count++;
+      // @ts-ignore
       assert(this.a, 'b');
     });
 

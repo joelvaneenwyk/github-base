@@ -5,6 +5,8 @@ const assert = require('assert');
 const auth = require('./support/auth');
 const GitHub = require('..');
 let username = 'doowb';
+
+/** @type {import('..')} */
 let github;
 
 describe('.paged', function() {

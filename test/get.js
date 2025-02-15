@@ -5,6 +5,8 @@ const assert = require('assert');
 const auth = require('./support/auth');
 const GitHub = require('..');
 let org = 'jonschlinkert/github-base';
+
+/** @type {import('..')} */
 let github;
 
 describe('.get', function() {

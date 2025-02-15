@@ -4,6 +4,8 @@ require('mocha');
 const assert = require('assert');
 const auth = require('./support/auth');
 const GitHub = require('..');
+
+/** @type {import('..')} */
 let github;
 
 describe('.patch', function() {
