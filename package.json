@@ -16,16 +16,19 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "lib"
+    "index.d.ts",
+    "lib/"
   ],
   "main": "index.js",
+  "types": "index.d.ts",
   "engines": {
     "node": ">=8.6"
   },
   "scripts": {
     "test": "mocha",
     "lint": "eslint .",
-    "format": "eslint --fix ."
+    "format": "eslint --fix .",
+    "check": "tsc --noEmit"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -38,13 +41,18 @@
     "use": "^3.1.1"
   },
   "devDependencies": {
-    "gulp-format-md": "github:joelvaneenwyk/gulp-format-md",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
     "data-store": "^4.0.3",
+    "eslint": "^9.20.1",
+    "gulp-format-md": "github:joelvaneenwyk/gulp-format-md",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.8",
-    "mocha": "^11.1.0"
+    "mocha": "^11.1.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
   },
   "keywords": [
     "api",
