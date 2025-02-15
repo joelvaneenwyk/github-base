@@ -1,8 +1,8 @@
 'use strict';
 
 require('mocha');
-const assert = require('assert');
-const typeOf = require('kind-of');
+//const assert = require('assert');
+//const typeOf = require('kind-of');
 const auth = require('./support/auth');
 const GitHub = require('..');
 let github;

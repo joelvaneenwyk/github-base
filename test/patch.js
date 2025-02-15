@@ -11,7 +11,7 @@ describe('.patch', function() {
 
   beforeEach(() => (github = new GitHub(auth)));
 
-  it('should PATCH an issue', () =>{
+  it('should PATCH an issue', () => {
     let opts = {
       owner: 'jonschlinkert',
       repo: 'github-base',
