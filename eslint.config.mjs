@@ -1,13 +1,16 @@
 import globals from 'globals';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   js.configs.recommended,
   {
     languageOptions: {
       globals: {
-        ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
+        ...Object.fromEntries(
+          Object.entries(globals.browser).map(([key]) => [key, 'off'])
+        ),
         ...globals.node,
         ...globals.mocha,
         document: false,
@@ -29,23 +32,33 @@ export default tseslint.config(
     rules: {
       'accessor-pairs': 2,
 
-      'arrow-spacing': [2, {
-        before: true,
-        after: true
-      }],
+      'arrow-spacing': [
+        2,
+        {
+          before: true,
+          after: true
+        }
+      ],
 
       'block-spacing': [2, 'always'],
 
-      'brace-style': [2, '1tbs', {
-        allowSingleLine: true
-      }],
+      'brace-style': [
+        2,
+        '1tbs',
+        {
+          allowSingleLine: true
+        }
+      ],
 
       'comma-dangle': [2, 'never'],
 
-      'comma-spacing': [2, {
-        before: false,
-        after: true
-      }],
+      'comma-spacing': [
+        2,
+        {
+          before: false,
+          after: true
+        }
+      ],
 
       'comma-style': [2, 'last'],
       'constructor-super': 2,
@@ -54,31 +67,47 @@ export default tseslint.config(
       'eol-last': 2,
       eqeqeq: [2, 'allow-null'],
 
-      'generator-star-spacing': [2, {
-        before: true,
-        after: true
-      }],
+      'generator-star-spacing': [
+        2,
+        {
+          before: true,
+          after: true
+        }
+      ],
 
       'handle-callback-err': [2, '^(err|error)$'],
 
-      indent: [2, 2, {
-        SwitchCase: 1
-      }],
+      indent: [
+        2,
+        2,
+        {
+          SwitchCase: 1
+        }
+      ],
 
-      'key-spacing': [2, {
-        beforeColon: false,
-        afterColon: true
-      }],
+      'key-spacing': [
+        2,
+        {
+          beforeColon: false,
+          afterColon: true
+        }
+      ],
 
-      'keyword-spacing': [2, {
-        before: true,
-        after: true
-      }],
+      'keyword-spacing': [
+        2,
+        {
+          before: true,
+          after: true
+        }
+      ],
 
-      'new-cap': [2, {
-        newIsCap: true,
-        capIsNew: false
-      }],
+      'new-cap': [
+        2,
+        {
+          newIsCap: true,
+          capIsNew: false
+        }
+      ],
 
       'new-parens': 2,
       'no-array-constructor': 2,
@@ -115,9 +144,12 @@ export default tseslint.config(
       'no-multi-spaces': 2,
       'no-multi-str': 2,
 
-      'no-multiple-empty-lines': [2, {
-        max: 1
-      }],
+      'no-multiple-empty-lines': [
+        2,
+        {
+          max: 1
+        }
+      ],
 
       'no-native-reassign': 0,
       'no-negated-in-lhs': 2,
@@ -145,54 +177,85 @@ export default tseslint.config(
       'no-undef-init': 2,
       'no-unexpected-multiline': 2,
 
-      'no-unneeded-ternary': [2, {
-        defaultAssignment: false
-      }],
+      'no-unneeded-ternary': [
+        2,
+        {
+          defaultAssignment: false
+        }
+      ],
 
       'no-unreachable': 2,
 
-      'no-unused-vars': [2, {
-        vars: 'all',
-        args: 'none'
-      }],
+      'no-unused-vars': [
+        2,
+        {
+          vars: 'all',
+          args: 'none'
+        }
+      ],
 
       'no-useless-call': 0,
       'no-with': 2,
 
-      'one-var': [0, {
-        initialized: 'never'
-      }],
-
-      'operator-linebreak': [0, 'after', {
-        overrides: {
-          '?': 'before',
-          ':': 'before'
+      'one-var': [
+        0,
+        {
+          initialized: 'never'
         }
-      }],
+      ],
+
+      'operator-linebreak': [
+        0,
+        'after',
+        {
+          overrides: {
+            '?': 'before',
+            ':': 'before'
+          }
+        }
+      ],
 
       'padded-blocks': [0, 'never'],
       quotes: [2, 'single', 'avoid-escape'],
       radix: 2,
       semi: [2, 'always'],
 
-      'semi-spacing': [2, {
-        before: false,
-        after: true
-      }],
+      'semi-spacing': [
+        2,
+        {
+          before: false,
+          after: true
+        }
+      ],
 
       'space-before-blocks': [2, 'always'],
       'space-before-function-paren': [2, 'never'],
       'space-in-parens': [2, 'never'],
       'space-infix-ops': 2,
 
-      'space-unary-ops': [2, {
-        words: true,
-        nonwords: false
-      }],
+      'space-unary-ops': [
+        2,
+        {
+          words: true,
+          nonwords: false
+        }
+      ],
 
-      'spaced-comment': [0, 'always', {
-        markers: ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
-      }],
+      'spaced-comment': [
+        0,
+        'always',
+        {
+          markers: [
+            'global',
+            'globals',
+            'eslint',
+            'eslint-disable',
+            '*package',
+            '!',
+            ','
+          ]
+        }
+      ],
 
       'use-isnan': 2,
       'valid-typeof': 2,
@@ -229,5 +292,6 @@ export default tseslint.config(
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}']
-  }
+  },
+  eslintConfigPrettier
 );

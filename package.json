@@ -24,10 +24,17 @@
   "engines": {
     "node": ">=8.6"
   },
+  "prettier": {
+    "bracketSpacing": true,
+    "trailingComma": "none",
+    "singleQuote": true
+  },
   "scripts": {
     "test": "mocha",
     "lint": "eslint .",
-    "format": "eslint --fix .",
+    "format": "npm run format:prettier",
+    "format:prettier": "prettier --write .",
+    "format:eslint": "eslint --fix .",
     "check": "tsc"
   },
   "dependencies": {
@@ -52,10 +59,12 @@
     "@typescript-eslint/parser": "^8.24.0",
     "data-store": "^4.0.3",
     "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
     "gulp-format-md": "github:joelvaneenwyk/gulp-format-md",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.8",
     "mocha": "^11.1.0",
+    "prettier": "^3.5.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0"
   },
