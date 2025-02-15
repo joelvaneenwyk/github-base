@@ -24,7 +24,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "eslint --fix ."
   },
   "dependencies": {
     "axios": "^0.18.0",
