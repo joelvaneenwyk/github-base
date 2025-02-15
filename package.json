@@ -23,7 +23,8 @@
     "node": ">=8.6"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint ."
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -35,11 +36,13 @@
     "use": "^3.1.0"
   },
   "devDependencies": {
-    "minimist": "^1.2.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.20.0",
     "data-store": "^1.0.0",
-    "mocha": "^3.5.3",
+    "gulp-format-md": "^1.0.0",
     "kind-of": "^6.0.2",
-    "gulp-format-md": "^1.0.0"
+    "minimist": "^1.2.0",
+    "mocha": "^3.5.3"
   },
   "keywords": [
     "api",
