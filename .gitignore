@@ -28,5 +28,4 @@ temp/
 tmp/
 dist/
 TODO.md
-package-lock.json
 *.tgz
