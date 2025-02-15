@@ -11,7 +11,7 @@ const use = require('use');
 const utils = require('./lib/utils');
 
 /**
- * @typedef {import('./lib/utils').GitHubRequestConfig} RequestOptions
+ * @typedef {import('./lib/utils').GitHubRequestConfig} GitHubRequestConfig
  * @typedef {import('./lib/utils').Next} Next
  *
  * @property {string} [token]
@@ -35,7 +35,7 @@ class GitHub {
   /**
    * Initialize a new `GitHub` with the given `options`.
    *
-   * @param {RequestOptions?} options
+   * @param {GitHubRequestConfig?} options
    */
   constructor(options) {
     this.options = options || utils.DefaultOptions;
@@ -56,7 +56,7 @@ class GitHub {
    * @name .request
    * @param  {String} `method` The http VERB to use
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions?} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
    * @api public
    */
   request(method, path, options = null) {
@@ -77,7 +77,7 @@ class GitHub {
    * ```
    * @name .get
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions?} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
    * @api public
    */
   get(path, options = null) {
@@ -96,7 +96,7 @@ class GitHub {
    * ```
    * @name .delete
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions?} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
    * @api public
    */
   delete(path, options = null) {
@@ -117,7 +117,7 @@ class GitHub {
    * ```
    * @name .patch
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions?} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
    * @api public
    */
   patch(path, options = null) {
@@ -136,7 +136,7 @@ class GitHub {
    * ```
    * @name .post
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions?} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
    * @api public
    */
   post(path, options = null) {
@@ -155,7 +155,7 @@ class GitHub {
    * ```
    * @name .put
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions?} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
    * @api public
    */
   put(path, options = null) {
@@ -173,12 +173,12 @@ class GitHub {
    * ```
    * @name .paged
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {RequestOptions | Next | null} `options` Request [options](#options).
+   * @param  {GitHubRequestConfig | Next | null} `options` Request [options](#options).
    * @param  {Next?} `next` Callback function to run on each page
    * @api public
    */
   paged(path, options = null, next = null) {
-    /** @type {RequestOptions?} */
+    /** @type {GitHubRequestConfig?} */
     let in_options = null;
     /** @type {Next?} */
     let in_next = null;
