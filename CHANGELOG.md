@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+<!-- markdownlint-disable MD033 -->
+
 <details>
   <summary><strong>Guiding Principles</strong></summary>
 
@@ -41,7 +43,6 @@ From v1.0 forward, changelog entries are classified using the following labels _
 ### Added
 
 - added support `options.query` and query strings on the URL
-
 
 ## [0.5.4] - 2017-04-19
 
@@ -136,6 +137,4 @@ From v1.0 forward, changelog entries are classified using the following labels _
 [0.2.1]: https://github.com/jonschlinkert/github-base/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/jonschlinkert/github-base/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/jonschlinkert/github-base/compare/0.1.0...0.1.1
-
-[keep-a-changelog]: https://github.com/olivierlacan/keep-a-changelog
 

@@ -315,7 +315,7 @@ github.put('/repos/:user/:repo/subscription', options);
 Expands to:
 
 ```js
-'/repos/jonschlinkert/github-base/subscription'
+'/repos/joelvaneenwyk/github-base/subscription'
 ```
 
 Placeholder names are also arbitrary, you can make them whatever you want as long as all placeholder names can be resolved using values defined on the options.
