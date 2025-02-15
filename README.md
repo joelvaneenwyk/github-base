@@ -100,11 +100,14 @@ const GitHub = require('github-base');
 Recursively `GET` all pages of gists for a user:
 
 ```js
-const github = new GitHub({ /* options */ });
+const github = new GitHub({
+  /* options */
+});
 const owner = 'jonschlinkert';
 
-github.paged(`/users/${owner}/gists`)
-  .then(res => console.log(res))
+github
+  .paged(`/users/${owner}/gists`)
+  .then((res) => console.log(res))
   .catch(console.error);
 ```
 
@@ -145,8 +148,7 @@ Uses [needle](https://github.com/tomas/needle) to make a request to the GitHub A
 // list all orgs for the authenticated user
 const auth = require('./local-private-auth-info');
 const github = new GitHub(auth);
-github.request('GET', '/user/orgs')
-  .then(res => console.log(res.body));
+github.request('GET', '/user/orgs').then((res) => console.log(res.body));
 ```
 
 ### [.get](index.js#L64)
@@ -162,12 +164,10 @@ Make a `GET` request to the GitHub API.
 
 ```js
 // get a list of orgs for the authenticated user
-github.get('/user/orgs')
-  .then(res => console.log(res.body));
+github.get('/user/orgs').then((res) => console.log(res.body));
 
 // get gists for the authenticated user
-github.get('/gists')
-  .then(res => console.log(res.body));
+github.get('/gists').then((res) => console.log(res.body));
 ```
 
 ### [.delete](index.js#L84)
@@ -183,8 +183,9 @@ Make a `DELETE` request to the GitHub API.
 
 ```js
 // un-follow someone
-github.delete('/user/following/:some_username', { some_username: 'whatever' })
-  .then(res => {
+github
+  .delete('/user/following/:some_username', { some_username: 'whatever' })
+  .then((res) => {
     console.log('RESPONSE:', res);
   });
 ```
@@ -203,11 +204,12 @@ Make a `PATCH` request to the GitHub API.
 ```js
 // update a gist
 const fs = require('fs');
-const options = { files: { 'readme.md': { content: fs.readFileSync('README.md', 'utf8') } } };
-github.patch('/gists/bd139161a425896f35f8', options)
-  .then(res => {
-    console.log('RESPONSE:', res);
-  });
+const options = {
+  files: { 'readme.md': { content: fs.readFileSync('README.md', 'utf8') } }
+};
+github.patch('/gists/bd139161a425896f35f8', options).then((res) => {
+  console.log('RESPONSE:', res);
+});
 ```
 
 ### [.post](index.js#L126)
@@ -223,10 +225,9 @@ Make a `POST` request to the GitHub API.
 
 ```js
 // create a new repository
-github.post('/user/repos', { name: 'new-repo-name' })
-  .then(res => {
-    console.log('RESPONSE:', res);
-  });
+github.post('/user/repos', { name: 'new-repo-name' }).then((res) => {
+  console.log('RESPONSE:', res);
+});
 ```
 
 ### [.put](index.js#L146)
@@ -242,10 +243,9 @@ Make a `PUT` request to the GitHub API.
 
 ```js
 // follow someone
-github.put('/user/following/jonschlinkert')
-  .then(res => {
-    console.log('RESPONSE:', res);
-  });
+github.put('/user/following/jonschlinkert').then((res) => {
+  console.log('RESPONSE:', res);
+});
 ```
 
 ### [.paged](index.js#L165)
@@ -261,9 +261,10 @@ Recursively make GET requests until all pages of records are returned.
 
 ```js
 // get all repos for the authenticated user
-github.paged('/user/repos?type=all&per_page=1000&sort=updated')
-  .then(res => console.log(res.pages))
-  .catch(console.error)
+github
+  .paged('/user/repos?type=all&per_page=1000&sort=updated')
+  .then((res) => console.log(res.pages))
+  .catch(console.error);
 ```
 
 ### .use
@@ -273,7 +274,7 @@ Register plugins with [use](https://github.com/jonschlinkert/use).
 ```js
 const github = new GitHub();
 
-github.use(function() {
+github.use(function () {
   // do stuff with the github-base instance
 });
 ```
@@ -285,7 +286,7 @@ There are a few ways to authenticate, all of them require info to be passed on t
 ```js
 const github = new GitHub({
   username: YOUR_USERNAME,
-  password: YOUR_PASSWORD,
+  password: YOUR_PASSWORD
 });
 
 // or
@@ -307,7 +308,11 @@ Paths are similar to router paths, where placeholders in the given string are re
 
 ```js
 const github = new GitHub();
-const options = { user: 'jonschlinkert', repo: 'github-base', subscribed: true };
+const options = {
+  user: 'jonschlinkert',
+  repo: 'github-base',
+  subscribed: true
+};
 
 github.put('/repos/:user/:repo/subscription', options);
 ```
@@ -315,7 +320,7 @@ github.put('/repos/:user/:repo/subscription', options);
 Expands to:
 
 ```js
-'/repos/joelvaneenwyk/github-base/subscription'
+'/repos/joelvaneenwyk/github-base/subscription';
 ```
 
 Placeholder names are also arbitrary, you can make them whatever you want as long as all placeholder names can be resolved using values defined on the options.
@@ -334,7 +339,7 @@ const github = new GitHub({ user: 'doowb' });
 github.options.user = 'doowb';
 
 // and/or pass to a method
-github.get('/users/:user/gists', { user: 'doowb' })
+github.get('/users/:user/gists', { user: 'doowb' });
 ```
 
 ### options.query
@@ -348,8 +353,9 @@ Pass an object to stringify and append to the URL using the `.stringify` method 
 #### Examples
 
 ```js
-github.paged('/users/:user/gists', { user: 'doowb', query: { per_page: 30 } })
-  .then(res => {
+github
+  .paged('/users/:user/gists', { user: 'doowb', query: { per_page: 30 } })
+  .then((res) => {
     console.log(res.pages);
   });
 ```
@@ -357,8 +363,9 @@ github.paged('/users/:user/gists', { user: 'doowb', query: { per_page: 30 } })
 You can also manually append the query string:
 
 ```js
-github.paged('/users/:user/gists?per_page=30', { user: 'doowb' })
-  .then(res => {
+github
+  .paged('/users/:user/gists?per_page=30', { user: 'doowb' })
+  .then((res) => {
     console.log(res.pages);
   });
 ```
@@ -400,15 +407,15 @@ npm install -g verbose/verb#dev verb-generate-readme && verb
 
 You might also be interested in these projects:
 
-- [gists](https://www.npmjs.com/package/gists): Methods for working with the GitHub Gist API. Node.js/JavaScript | [homepage](https://github.com/jonschlinkert/gists "Methods for working with the GitHub Gist API. Node.js/JavaScript")
-- [github-contributors](https://www.npmjs.com/package/github-contributors): Generate a markdown or JSON list of contributors for a project using the GitHub API. | [homepage](https://github.com/jonschlinkert/github-contributors "Generate a markdown or JSON list of contributors for a project using the GitHub API.")
-- [repos](https://www.npmjs.com/package/repos): List all repositories for one or more users or orgs. | [homepage](https://github.com/jonschlinkert/repos "List all repositories for one or more users or orgs.")
-- [topics](https://www.npmjs.com/package/topics): Get and update GitHub repository topics. | [homepage](https://github.com/jonschlinkert/topics "Get and update GitHub repository topics.")
+- [gists](https://www.npmjs.com/package/gists): Methods for working with the GitHub Gist API. Node.js/JavaScript | [homepage](https://github.com/jonschlinkert/gists 'Methods for working with the GitHub Gist API. Node.js/JavaScript')
+- [github-contributors](https://www.npmjs.com/package/github-contributors): Generate a markdown or JSON list of contributors for a project using the GitHub API. | [homepage](https://github.com/jonschlinkert/github-contributors 'Generate a markdown or JSON list of contributors for a project using the GitHub API.')
+- [repos](https://www.npmjs.com/package/repos): List all repositories for one or more users or orgs. | [homepage](https://github.com/jonschlinkert/repos 'List all repositories for one or more users or orgs.')
+- [topics](https://www.npmjs.com/package/topics): Get and update GitHub repository topics. | [homepage](https://github.com/jonschlinkert/topics 'Get and update GitHub repository topics.')
 
 ### Contributors
 
 | **Commits** | **Contributor**                                   |
-|-------------|---------------------------------------------------|
+| ----------- | ------------------------------------------------- |
 | 40          | [jonschlinkert](https://github.com/jonschlinkert) |
 | 10          | [doowb](https://github.com/doowb)                 |
 | 7           | [olstenlarck](https://github.com/olstenlarck)     |
@@ -416,6 +423,7 @@ You might also be interested in these projects:
 ### Author
 
 <!-- markdownlint-disable MD036 -->
+
 **Jon Schlinkert**
 
 - [GitHub Profile](https://github.com/jonschlinkert)
@@ -427,6 +435,6 @@ You might also be interested in these projects:
 Copyright © 2018, [Jon Schlinkert](https://github.com/jonschlinkert).
 Released under the [MIT License](LICENSE).
 
-***
+---
 
 _This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on August 14, 2018._
