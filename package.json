@@ -1,7 +1,7 @@
 {
   "name": "github-base",
   "description": "Low-level methods for working with the GitHub API in node.js/JavaScript.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/jonschlinkert/github-base",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
