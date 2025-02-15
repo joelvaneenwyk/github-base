@@ -11,10 +11,9 @@ const use = require('use');
 const utils = require('./lib/utils');
 
 /**
- * @typedef {import('./lib/utils').Options} Options
+ * @typedef {import('./lib/utils').GitHubRequestConfig} RequestOptions
  * @typedef {import('./lib/utils').Next} Next
  *
- * @typedef {Object} GitHubOptions
  * @property {string} [token]
  * @property {string} [username]
  * @property {string} [password]
@@ -36,10 +35,10 @@ class GitHub {
   /**
    * Initialize a new `GitHub` with the given `options`.
    *
-   * @param {GitHubOptions} options
+   * @param {RequestOptions?} options
    */
-  constructor(options = {}) {
-    this.options = options;
+  constructor(options) {
+    this.options = options || utils.DefaultOptions;
     use(this);
   }
 
@@ -57,10 +56,10 @@ class GitHub {
    * @name .request
    * @param  {String} `method` The http VERB to use
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
+   * @param  {RequestOptions?} `options` Request [options](#options).
    * @api public
    */
-  request(method, path, options) {
+  request(method, path, options = null) {
     return utils.request(method, path, { ...this.options, ...options });
   }
 
@@ -78,10 +77,10 @@ class GitHub {
    * ```
    * @name .get
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
+   * @param  {RequestOptions?} `options` Request [options](#options).
    * @api public
    */
-  get(path, options = {}) {
+  get(path, options = null) {
     return this.request('GET', path, options);
   }
 
@@ -97,10 +96,10 @@ class GitHub {
    * ```
    * @name .delete
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
+   * @param  {RequestOptions?} `options` Request [options](#options).
    * @api public
    */
-  delete(path, options = {}) {
+  delete(path, options = null) {
     return this.request('DELETE', path, options);
   }
 
@@ -118,10 +117,10 @@ class GitHub {
    * ```
    * @name .patch
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
+   * @param  {RequestOptions?} `options` Request [options](#options).
    * @api public
    */
-  patch(path, options = {}) {
+  patch(path, options = null) {
     return this.request('PATCH', path, options);
   }
 
@@ -137,10 +136,10 @@ class GitHub {
    * ```
    * @name .post
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
+   * @param  {RequestOptions?} `options` Request [options](#options).
    * @api public
    */
-  post(path, options = {}) {
+  post(path, options = null) {
     return this.request('POST', path, options);
   }
 
@@ -156,10 +155,10 @@ class GitHub {
    * ```
    * @name .put
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options} `options` Request [options](#options).
+   * @param  {RequestOptions?} `options` Request [options](#options).
    * @api public
    */
-  put(path, options = {}) {
+  put(path, options = null) {
     return this.request('PUT', path, options);
   }
 
@@ -174,16 +173,29 @@ class GitHub {
    * ```
    * @name .paged
    * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {Options | null} `options` Request [options](#options).
-   * @param  {Next} `next` Callback function to run on each page
+   * @param  {RequestOptions | Next | null} `options` Request [options](#options).
+   * @param  {Next?} `next` Callback function to run on each page
    * @api public
    */
-  paged(path, options = null, next = () => { }) {
+  paged(path, options = null, next = null) {
+    /** @type {RequestOptions?} */
+    let in_options = null;
+    /** @type {Next?} */
+    let in_next = null;
+
     if (typeof options === 'function') {
-      next = options;
-      options = null;
+      in_next = options;
+    } else if (typeof options === 'object' && options !== null) {
+      in_options = options;
+      if (typeof next === 'function') {
+        in_next = next;
+      }
     }
-    return utils.paged('GET', path, { ...this.options, ...options, next });
+
+    let paged_options = { ...this.options, ...(in_options || {}) };
+    paged_options.next = in_next;
+
+    return utils.paged('GET', path, paged_options);
   }
 }
 
