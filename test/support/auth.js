@@ -5,6 +5,7 @@ var argv = require('minimist')(process.argv.slice(2), opts);
 var Store = require('data-store');
 var store = new Store('github-base-tests');
 var auth = store.get('auth');
+require('dotenv').config();
 
 if (!auth) {
   auth = {
