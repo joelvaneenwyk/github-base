@@ -3,8 +3,11 @@
         "target": "es2018",
         "module": "commonjs",
         "declaration": true,
+        "outDir": "./dist",
         "strict": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
+        "checkJs": true,
+        "allowJs": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "noUnusedLocals": true,
@@ -14,9 +17,5 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
-    },
-    "include": [
-        "index.d.ts",
-        "test/**/*"
-    ]
+    }
 }

@@ -1,7 +1,25 @@
-'use strict';
+/**
+ * GitHub API client // `github-base`
+ *
+ * This is a simple wrapper around the GitHub API, that makes it easy
+ * to make requests to the GitHub API.
+ *
+ * @module github-base
+ */
 
 const use = require('use');
 const utils = require('./lib/utils');
+
+/**
+ * @typedef {import('./lib/utils').Options} Options
+ *
+ * @typedef {Object} GitHubOptions
+ * @property {string} [token]
+ * @property {string} [username]
+ * @property {string} [password]
+ * @property {Record<string, string>} [headers]
+ * @property {string | Record<string, string> | undefined} [key]
+ */
 
 /**
  * Create an instance of `GitHub` with the given options.
@@ -11,11 +29,14 @@ const utils = require('./lib/utils');
  * const github = new GitHub([options]);
  * ```
  * @name GitHub
- * @param {Object} `options`
  * @api public
  */
-
 class GitHub {
+  /**
+   * Initialize a new `GitHub` with the given `options`.
+   *
+   * @param {GitHubOptions} options
+   */
   constructor(options = {}) {
     this.options = options;
     use(this);
@@ -38,7 +59,6 @@ class GitHub {
    * @param  {Options} `options` Request [options](#options).
    * @api public
    */
-
   request(method, path, options) {
     return utils.request(method, path, { ...this.options, ...options });
   }
@@ -60,8 +80,7 @@ class GitHub {
    * @param  {Options} `options` Request [options](#options).
    * @api public
    */
-
-  get(path, options) {
+  get(path, options = {}) {
     return this.request('GET', path, options);
   }
 
@@ -80,8 +99,7 @@ class GitHub {
    * @param  {Options} `options` Request [options](#options).
    * @api public
    */
-
-  delete(path, options) {
+  delete(path, options = {}) {
     return this.request('DELETE', path, options);
   }
 
@@ -102,8 +120,7 @@ class GitHub {
    * @param  {Options} `options` Request [options](#options).
    * @api public
    */
-
-  patch(path, options) {
+  patch(path, options = {}) {
     return this.request('PATCH', path, options);
   }
 
@@ -123,7 +140,7 @@ class GitHub {
    * @api public
    */
 
-  post(path, options) {
+  post(path, options = {}) {
     return this.request('POST', path, options);
   }
 
@@ -142,8 +159,7 @@ class GitHub {
    * @param  {Options} `options` Request [options](#options).
    * @api public
    */
-
-  put(path, options) {
+  put(path, options = {}) {
     return this.request('PUT', path, options);
   }
 
@@ -159,10 +175,10 @@ class GitHub {
    * @name .paged
    * @param  {String} `path` The path to append to the base GitHub API URL.
    * @param  {Options} `options` Request [options](#options).
+   * @param  {Function} `next` Callback function to run on each page
    * @api public
    */
-
-  paged(path, options, next) {
+  paged(path, options = null, next = () => {}) {
     if (typeof options === 'function') {
       next = options;
       options = null;
