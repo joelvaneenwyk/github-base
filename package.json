@@ -28,23 +28,23 @@
     "format": "eslint --fix ."
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^1.7.9",
     "dotenv": "^16.4.7",
-    "get-value": "^3.0.1",
-    "needle": "^2.2.2",
-    "paged-request": "^1.0.2",
-    "parse-link-header": "^1.0.1",
-    "qs": "^6.5.1",
-    "use": "^3.1.0"
+    "get-value": "^4.0.1",
+    "needle": "^3.3.1",
+    "paged-request": "^2.0.2",
+    "parse-link-header": "^2.0.0",
+    "qs": "^6.14.0",
+    "use": "^3.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
-    "data-store": "^1.0.0",
-    "gulp-format-md": "^1.0.0",
-    "kind-of": "^6.0.2",
-    "minimist": "^1.2.0",
-    "mocha": "^3.5.3"
+    "data-store": "^4.0.3",
+    "gulp-format-md": "^2.0.0",
+    "kind-of": "^6.0.3",
+    "minimist": "^1.2.8",
+    "mocha": "^11.1.0"
   },
   "keywords": [
     "api",
