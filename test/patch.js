@@ -14,6 +14,7 @@ describe('.patch', function() {
   beforeEach(() => (github = new GitHub(auth)));
 
   it('should PATCH an issue', () => {
+    /** @type {import('..').GitHubRequestConfig} */
     let opts = {
       owner: 'jonschlinkert',
       repo: 'github-base',
