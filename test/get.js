@@ -6,19 +6,20 @@ const auth = require('./support/auth');
 const GitHub = require('..');
 let org = 'jonschlinkert/github-base';
 
-/** @type {import('..')} */
-let github;
-
 describe('.get', function() {
-  beforeEach(() => (github = new GitHub(auth)));
-
-  it('should get resources when authenticated', function() {
+  it('should get resources when authenticated', function () {
+    const github = new GitHub(auth);
     return github.get(`/repos/${org}/contributors`)
-      .then(res => assert.strictEqual(res.body.length > 0, true));
+      .then(res => {
+        assert.strictEqual(res.body.length > 0, true);
+      });
   });
 
-  it('should get resources when unauthenticated', function() {
+  it('should get resources when unauthenticated', function () {
+    const github = new GitHub();
     return github.get(`/repos/${org}/contributors`)
-      .then(res => assert.strictEqual(res.body.length > 0, true));
+      .then(res => {
+          assert.strictEqual(res.body.length > 0, true);
+        });
   });
 });
