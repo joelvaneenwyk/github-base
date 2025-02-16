@@ -20,7 +20,6 @@
     "lib/"
   ],
   "main": "index.js",
-  "types": "index.d.ts",
   "engines": {
     "node": ">=8.6"
   },
