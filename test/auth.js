@@ -9,22 +9,23 @@ const GitHub = require('..');
 let github;
 
 describe('authentication', function() {
-  this.timeout(5000);
-
   beforeEach(() => (github = new GitHub(auth)));
 
-  it('should throw an error when bad credentials are provided', function() {
-    github = new GitHub({ username: 'doowb-that-does-not-really-exist', password: 'credentials' });
-
-    return github.get('/repos/doowb/fooobarbaz')
+  it('should throw an error when bad credentials are provided', function () {
+    const github_no_auth = new GitHub({ username: 'doowb-that-does-not-really-exist', password: 'credentials' });
+    return github_no_auth.get('/repos/doowb/fooobarbaz')
       .then(res => assert(!res))
       .catch(err => {
-        assert.deepEqual(err.response.status, 404);
+        assert.strictEqual(err.response.statusCode, 404);
       });
   });
 
   it('should authenticate with username and password', function() {
-    return github.get('/gists').then(res => assert(res.body.length > 0));
+    return github.get('/gists').then(res => {
+      assert.strictEqual(res.body.length > 0, true);
+      assert.strictEqual(res.statusCode, 200);
+      assert.strictEqual(res.body[0].url.startsWith('https://api.github.com/gists/'), true);
+    });
   });
 
   it.skip('should get the rate limit', function() {
