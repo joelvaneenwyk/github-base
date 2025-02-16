@@ -37,7 +37,7 @@ class GitHub {
    *
    * @param {GitHubRequestConfig?} options
    */
-  constructor(options) {
+  constructor(options = null) {
     this.options = options || utils.DefaultOptions;
     use(this);
   }
@@ -53,10 +53,9 @@ class GitHub {
    * github.request('GET', '/user/orgs')
    *   .then(res => console.log(res.body));
    * ```
-   * @name .request
-   * @param  {String} `method` The http VERB to use
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
+   * @param  {String} method The http VERB to use
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig?} options Request [options](#options).
    * @api public
    */
   request(method, path, options = null) {
@@ -75,9 +74,8 @@ class GitHub {
    * github.get('/gists')
    *   .then(res => console.log(res.body));
    * ```
-   * @name .get
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig?} options Request [options](#options).
    * @api public
    */
   get(path, options = null) {
@@ -94,9 +92,8 @@ class GitHub {
    *     console.log('RESPONSE:', res);
    *   });
    * ```
-   * @name .delete
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig?} options Request [options](#options).
    * @api public
    */
   delete(path, options = null) {
@@ -115,9 +112,8 @@ class GitHub {
    *     console.log('RESPONSE:', res);
    *   });
    * ```
-   * @name .patch
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig?} options Request [options](#options).
    * @api public
    */
   patch(path, options = null) {
@@ -134,9 +130,8 @@ class GitHub {
    *     console.log('RESPONSE:', res);
    *   });
    * ```
-   * @name .post
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig?} options Request [options](#options).
    * @api public
    */
   post(path, options = null) {
@@ -153,9 +148,8 @@ class GitHub {
    *     console.log('RESPONSE:', res);
    *   });
    * ```
-   * @name .put
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig?} `options` Request [options](#options).
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig?} options Request [options](#options).
    * @api public
    */
   put(path, options = null) {
@@ -171,10 +165,9 @@ class GitHub {
    *   .then(res => console.log(res.pages))
    *   .catch(console.error)
    * ```
-   * @name .paged
-   * @param  {String} `path` The path to append to the base GitHub API URL.
-   * @param  {GitHubRequestConfig | Next | null} `options` Request [options](#options).
-   * @param  {Next?} `next` Callback function to run on each page
+   * @param  {String} path The path to append to the base GitHub API URL.
+   * @param  {GitHubRequestConfig | Next | null} options Request [options](#options).
+   * @param  {Next?} next Callback function to run on each page
    * @api public
    */
   paged(path, options = null, next = null) {
